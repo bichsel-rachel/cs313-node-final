@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Postal Rate Calculator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<header>
+    <h1>We Got This!</h1>
+</header>
+<body>
+    <div class="col-sm-8">    
+        <div class="jumbotron">
+            <h1>Log In</h1>
+            
+            <form method="GET" action="/login">
+                <input type="email" name="email" placeholder="Email">
+                <input type="password" name="password" placeholder="Password">
+                <input type="submit" value="Submit" class="btn btn-primary"> 
+            </form>
+
+            <div id="result"></div>
+        </div>
+    </div>
+
+    <h2>Categories</h2>
+    <div id="categories"></div>
+   
+</body>
+</html>
