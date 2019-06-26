@@ -40,11 +40,11 @@ pool.query(sql, function(err, result) {
 });     
 
 app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname+'/public/index.html'));
+    res.sendFile(path.join(__dirname+'/public/login.html'));
 });
 
 app.get('/login', function(req, res) {
-    res.sendFile(path.join(__dirname+'/public/form.html'));
+    res.sendFile(path.join(__dirname+'/public/index.html'));
 });
 
 app.get('/getCategory', function(req, res) {
