@@ -48,8 +48,40 @@ app.get('/login', function(req, res) {
 });
 
 app.get('/getCategory', function(req, res) {
-    res.sendFile(path.join(__dirname+'/public/form.html'));
+   console.log("Worked");
+   let id = req.query.id;
+
+ 	getCategory(id, (error, result) => {
+    if (error || result == null) {
+      res.status(500).json({success: false, data: error});
+    }else{
+      res.json(result[0]);
+      let id = result[0].id;
+      let fname = result[0].first_name;
+      let tip = result[0].tip_title;
+      let description = result[0].tip_description;
+      let params = {id: id, fname: fname, tip: tip, description: description };
+      console.log(params);
+    }
+  });
 });
+
+// function to retrieve sql data from db with id
+function getCategory(id, callback) {
+    // similar to PDO in PHP, $1::int gets back first data piece cleanly
+    //let sql = 'SELECT * FROM tip WHERE id = $1::int';
+    let sql = 'SELECT * FROM category c INNER JOIN tip t ON c.id = t.category_id INNER JOIN users u ON t.users_id = u.id WHERE c.id = 1';
+    let params = [id];
+    pool.query(sql, params, (err, result) => {
+      if (err) {
+        console.log('an error with db happened');
+        console.log(err);
+        callback(err,null);
+      }
+      // console.log('found db result: ' + JSON.stringify(result.rows[0].fname));
+      callback(null, result.rows);
+    });
+  };
 
 app.get('/addTip', function(req, res) {
     res.sendFile(path.join(__dirname+'/public/form.html'));
@@ -63,17 +95,8 @@ app.get('/thumbDown', function(req, res) {
     res.sendFile(path.join(__dirname+'/public/form.html'));
 });
 
-app.get('/getRate', function(req, res) {
-let mail = req.query.mail;
-let weight = req.query.weight;
-let result = calculatRate(mail, weight);
-        res.render('pages/getRate', {"result": result});
-    });
 
 app.listen(port, () => console.log(`Running on port ${port}!`))
 
-//Model
-let mail = "stamped";
-let weight = 1;
-console.log("1");
+
    

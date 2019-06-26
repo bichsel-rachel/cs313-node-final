@@ -37,5 +37,5 @@ INSERT INTO category (category_name) VALUES ('Media');
 
 INSERT INTO tip (users_id, category_id, tip_title, tip_description) VALUES ('1', '1', 'Crying it Out', 'The camping out method doesnt work on my child. The only thing that worked was having her cry it out. It is hard the first week, but eventaully she gets it down.');
 
-
+SELECT * FROM category c INNER JOIN tip t ON c.id = t.category_id INNER JOIN users u ON t.users_id = u.id WHERE c.id = 1;
 
