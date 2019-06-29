@@ -39,3 +39,8 @@ INSERT INTO tip (users_id, category_id, tip_title, tip_description) VALUES ('1',
 
 SELECT * FROM category c INNER JOIN tip t ON c.id = t.category_id INNER JOIN users u ON t.users_id = u.id WHERE c.id = 1;
 
+INSERT INTO tip (users_id, category_id, tip_title, tip_description) VALUES ('1', '2', 'Show by Example', 'My son has always refused to eat veggies. One day as I was trying to give him a vegetable, he said, "No, you eat it." It was at that moment I realized I didnt want to eat it as well. I started eating veggies around him and just the other day he asked if he could eat one. Lead by example!');
+
+INSERT INTO tip (users_id, category_id, tip_title, tip_description) VALUES ('1', '3', 'Nap Where they Sleep', 'I made the mistake of letting me son nap on the couch. He then started to not want to sleep in his crib at night.');
+
+INSERT INTO tip (users_id, category_id, tip_title, tip_description) VALUES ('1', '4', 'Time Out', 'The only way I can get time out to work is have a designated spot in the room.');

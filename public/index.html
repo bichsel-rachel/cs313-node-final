@@ -3,7 +3,7 @@
 <head>
     <title>We Got This! | Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="public/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/main.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -13,13 +13,20 @@
 </header>
 <body>
     
-    <h2>Pick Category</h2>
-    <form action="/getCategory" method="GET">
+    <h2>Pick a Category</h2>
+    <!-- <form action="/getCategory" method="GET">
         <input name="id" type="integer" value="1" hidden/><br />
-    </form>
+    </form> -->
     <button onclick="getCategory(1)">Sleeping</button>
+    <button onclick="getCategory(2)">Eating</button>
+    <button onclick="getCategory(3)">Napping</button>
+    <button onclick="getCategory(4)">Discipline</button>
+    <button onclick="getCategory(5)">Media</button>
 
-    <div id="categories">This should be erased.</div>
+
+
+
+    <div id="categories"></div>
 
     <script language="javascript">
         function getCategory(id) {
@@ -45,7 +52,7 @@
                     console.log(data);
                     //data = JSON.stringify(data);
                     //data = JSON.parse(date);
-                    $('#categories').html('<strong>Tip:</strong> ' + data.tip_title + '</br>' + data.tip_description + '<br />Tip By: ' + data.username + '<br />Thumbs up:' + data.thumbs_up + '<br />Thumbs down: ' + data.thumbs_down);
+                    $('#categories').html('<h4>Tip:</h4> ' + data.tip_title + '</br>' + data.tip_description + '<br /><b>Tip By: </b>' + data.username + '<br /><b>Thumbs up:</b>' + data.thumbs_up + '<br /><b>Thumbs down: </b>' + data.thumbs_down);
                 },
                 error: function(xhr, status, error) {
                     console.log(error);
