@@ -23,34 +23,33 @@ const connectionString = process.env.DATABASE_URL;
 
 const pool = new Pool({connectionString: connectionString});
 
-var sql = "SELECT * FROM users";
+// var sql = "SELECT * FROM users";
 
-pool.query(sql, function(err, result) {
-    // If an error occurred...
-    if (err) {
-        console.log("Error in query: ")
-        console.log(err);
-    }
+// pool.query(sql, function(err, result) {
+//     // If an error occurred...
+//     if (err) {
+//         console.log("Error in query: ")
+//         console.log(err);
+//     }
 
-    // Log this to the console for debugging purposes.
-    console.log("Back from DB with result:");
-    console.log(result.rows);
+//     // Log this to the console for debugging purposes.
+//     console.log("Back from DB with result:");
+//     console.log(result.rows);
 
 
-});     
+// });     
 
-app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname+'/public/login.html'));
-});
+// app.get('/', function(req, res) {
+//     res.sendFile(path.join(__dirname+'/public/login.html'));
+// });
 
-app.get('/login', function(req, res) {
-    res.sendFile(path.join(__dirname+'/public/index.html'));
-});
+// app.get('/login', function(req, res) {
+//     res.sendFile(path.join(__dirname+'/public/index.html'));
+// });
 
 app.get('/getCategory', function(req, res) {
-   console.log("Worked");
    let id = req.query.id;
-   console.log(id);
+   //console.log(id);
 
  	getCategory(id, (error, result) => {
     if (error || result == null) {
@@ -71,7 +70,7 @@ app.get('/getCategory', function(req, res) {
 function getCategory(id, callback) {
     // similar to PDO in PHP, $1::int gets back first data piece cleanly
     //let sql = 'SELECT * FROM tip WHERE id = $1::int';
-    let sql = 'SELECT * FROM category c INNER JOIN tip t ON c.id = t.category_id INNER JOIN users u ON t.users_id = u.id WHERE c.id = $1::int';
+    let sql = 'SELECT c.id, category_name, tip_title, tip_description, username FROM category c INNER JOIN tip t ON c.id = t.category_id INNER JOIN users u ON t.users_id = u.id WHERE c.id = $1::int';
     let params = [id];
     pool.query(sql, params, (err, result) => {
       if (err) {
@@ -79,7 +78,7 @@ function getCategory(id, callback) {
         console.log(err);
         callback(err,null);
       }
-      console.log('found db result: ' + JSON.stringify(result.rows[0]));
+      //console.log('found db result: ' + JSON.stringify(result.rows[0]));
       callback(null, result.rows);
     });
   };

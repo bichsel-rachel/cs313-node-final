@@ -3,41 +3,23 @@
 <head>
     <title>We Got This! | Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="public/stylesheets/main.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script
-    src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"
-></script>
-<script
-    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"
-></script>
-<script
-    src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"
-></script>
-
-<script
-    src="https://code.jquery.com/jquery-3.4.1.js"
-    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-    crossorigin="anonymous"
-></script>
+    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 <header>
     <h1>We Got This!</h1>
 </header>
 <body>
     
-    <h1>Pick Category</h1>
+    <h2>Pick Category</h2>
     <form action="/getCategory" method="GET">
         <input name="id" type="integer" value="1" hidden/><br />
-        <button onclick="getCategory(id.value)">Sleeping</button>
     </form>
+    <button onclick="getCategory(1)">Sleeping</button>
 
-    <div id="categories"></div>
+    <div id="categories">This should be erased.</div>
 
     <script language="javascript">
         function getCategory(id) {
@@ -52,16 +34,18 @@
                 //Fetch form data
                 id: id //Store name fields value
             };
+            console.log(postForm);
             $.ajax({
                 type: 'GET',
                 data: postForm,
                 url: '/getCategory',
                 dataType: 'json',
                 success: function(data) {
-                    console.log("here I am!");
+                    console.log("Inside AJAX");
                     console.log(data);
-                    data = JSON.stringify(data);
-                    $('#categories').html('<strong>Result:</strong> ' + data); //what i try to do but don't work
+                    //data = JSON.stringify(data);
+                    //data = JSON.parse(date);
+                    $('#categories').html('<strong>Tip:</strong> ' + data.tip_title + '</br>' + data.tip_description + '<br />Tip By: ' + data.username + '<br />Thumbs up:' + data.thumbs_up + '<br />Thumbs down: ' + data.thumbs_down);
                 },
                 error: function(xhr, status, error) {
                     console.log(error);
