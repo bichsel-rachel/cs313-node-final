@@ -58,13 +58,7 @@ app.get('/getCategory', function(req, res) {
     if (error || result == null) {
       res.status(500).json({success: false, data: error});
     }else{
-      res.json(result[0]);
-      // let id = result[0].id;
-      // let fname = result[0].first_name;
-      // let tip = result[0].tip_title;
-      // let description = result[0].tip_description;
-      // let params = {id: id, fname: fname, tip: tip, description: description };
-      // console.log(params);
+      res.json(result);
     }
   });
 });

@@ -44,3 +44,7 @@ INSERT INTO tip (users_id, category_id, tip_title, tip_description) VALUES ('1',
 INSERT INTO tip (users_id, category_id, tip_title, tip_description) VALUES ('1', '3', 'Nap Where they Sleep', 'I made the mistake of letting me son nap on the couch. He then started to not want to sleep in his crib at night.');
 
 INSERT INTO tip (users_id, category_id, tip_title, tip_description) VALUES ('1', '4', 'Time Out', 'The only way I can get time out to work is have a designated spot in the room.');
+
+INSERT INTO tip (users_id, category_id, tip_title, tip_description) VALUES ('1', '5', 'Main Source of Entertainment', 'Let your kid watch whatever they want, when they want!');
+
+INSERT INTO tip (users_id, category_id, tip_title, tip_description, thumbs_down, thumbs_up) VALUES ('1', '1', 'Love is Key', 'I go in every time she cries. I believe love can fix everything. She always knows I will be there.', '5', '5');
