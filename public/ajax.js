@@ -1,66 +1,49 @@
 function checkLogin(email, password) {
     console.log(email, password);
-    console.log("inside function");
-
-    /* Clear result div*/
-    $('#categories').html('');
-    $('#addTip').html('');
+    console.log("inside checkLogin function");
 
     /* Get from elements values */
-    var postForm = {
+    var params = {
         //Fetch form data
         email: email
     ,   password: password //Store name fields value
     };
-    console.log(postForm);
-    $.ajax({
-        type: 'GET',
-        data: postForm,
-        url: '/login',
-        dataType: 'json',
-        success: function(data) {
-            console.log("Inside AJAX");
-            console.log(data);
-            updateResultList(data);
-            //$('#categories').html('<h4>Tip:</h4> ' + data.tip_title + '</br>' + data.tip_description + '<br /><b>Tip By: </b>' + data.username + '<br /><b>Thumbs up:</b>' + data.thumbs_up + '<br /><b>Thumbs down: </b>' + data.thumbs_down);
-        },
-        error: function(xhr, status, error) {
-            console.log(error);
-        }
-    });
+   
+    
+    $.post("/login", params, function(result) {
+		if (result) {
+			console.log("logged in");
+            window.location.href = "http://localhost:8888/category.html";
+		} else {
+			$("#loginStatus").text("Incorrect username or password. Try again.");
+		}
+	});
 }
 
-function createUser(fName, lName, username, email, password) {
+function createUser(fname, lname, username, email, password) {
     //console.log(fName, lName, username, email, password);
-    console.log("inside function");
+    console.log("inside CreateUser function");
 
-    /* Clear result div*/
-    // $('#categories').html('');
-
-    /* Get from elements values */
-    var postForm = {
-        fName: fName
-    ,   lName: lName
+    var params = {
+        fname: fname
+    ,   lname: lname
     ,   username: username
     ,   email: email
     ,   password: password //Store name fields value
     };
-    console.log(postForm);
-    $.ajax({
-        type: 'GET',
-        data: postForm,
-        url: '/createUser',
-        dataType: 'json',
-        success: function(data) {
-            console.log("Inside AJAX");
-            console.log(data);
-            //$('#categories').html('<h4>Tip:</h4> ' + data.tip_title + '</br>' + data.tip_description + '<br /><b>Tip By: </b>' + data.username + '<br /><b>Thumbs up:</b>' + data.thumbs_up + '<br /><b>Thumbs down: </b>' + data.thumbs_down);
-        },
-        error: function(xhr, status, error) {
-            console.log(error);
-        }
-    });
+    console.log(params);
+
+    $.post("/createUser", params, function(result) {
+		if (result) {
+			$("#signUpStatus").text("Successfully created User.");
+		} else {
+			$("#signUpStatus").text("Error creating user.");
+		}
+	});
+    
 }
+
+
 
 function getCategory(id) {
     console.log(id);
@@ -85,8 +68,7 @@ function getCategory(id) {
             console.log("Inside AJAX");
             console.log(data);
             updateResultList(data);
-            //$('#categories').html('<h4>Tip:</h4> ' + data.tip_title + '</br>' + data.tip_description + '<br /><b>Tip By: </b>' + data.username + '<br /><b>Thumbs up:</b>' + data.thumbs_up + '<br /><b>Thumbs down: </b>' + data.thumbs_down);
-        },
+       },
         error: function(xhr, status, error) {
             console.log(error);
         }
@@ -108,7 +90,7 @@ function updateResultList(data) {
     resultList.append('<h4>Tip:</h4> ' + title + '<br />' + description + '<br /><b>Tip By: </b>' + username + '<br /><b>Thumbs up:</b>' + thumbs_up + '<br /><b>Thumbs down: </b>' + thumbs_down + '<br /><button type="button" onclick="thumbsUp(' + data[i].tid + ',' + data[i].id + ')">Thumbs Up</button><br /><button type="button" onclick="thumbsDown(' + data[i].tid + ',' + data[i].id + ')">Thumbs Down</button>');
     }
     addTip.append('<h3>Add Tip</h3><br />');
-    addTip.append('<input type="text" id="title"><br /><button onclick="">Add Tip</button>');
+    addTip.append('<form><input type="text" name="title" placeholder="Title"><br /><input type="text" name="description" placeholder="Description"><br /><button onclick="addTip(title.value, description.value, ' + data[0].id + ')">Add Tip</button></form>');
 }
 else {
     console.log("Error")
@@ -139,8 +121,7 @@ function thumbsUp(id, cid) {
             console.log("Inside AJAX");
             console.log(data);
             getCategory(cid);
-            //$('#categories').html('<h4>Tip:</h4> ' + data.tip_title + '</br>' + data.tip_description + '<br /><b>Tip By: </b>' + data.username + '<br /><b>Thumbs up:</b>' + data.thumbs_up + '<br /><b>Thumbs down: </b>' + data.thumbs_down);
-        },
+       },
         error: function(xhr, status, error) {
             console.log(error);
         }
@@ -176,3 +157,54 @@ function thumbsDown(id, cid) {
     });
 }
 
+function logout() {
+  
+    console.log("inside function");
+    $.ajax({
+        type: 'GET',
+        url: '/logout',
+        dataType: 'json',
+        success: function(data) {
+            console.log("Inside AJAX");
+            console.log(data);
+           
+             window.location.href = "http://localhost:8888/";
+        },
+        error: function(xhr, status, error) {
+            console.log(error);
+        }
+    });
+}
+
+function verifyLogin() {
+    $.get("/verifyLogin", function (result){
+        if(!result.result){
+             window.location.href = "http://localhost:8888/";
+        }
+    })
+}
+
+function addTip(title, description, cid) {
+    console.log("inside addTip function");
+    console.log("Title:",title);
+     console.log("Title:",description);
+ console.log("Title:",cid);
+
+
+    var params = {
+        title: title
+    ,   description: description
+    ,   cid: cid
+    };
+    console.log(params);
+
+    $.post("/addTip", params, function(result) {
+		if (result) {
+			$("#status").text("Successfully added Tip.");
+            getCategory(cid);
+		} else {
+			$("#status").text("Error adding Tip.");
+		}
+	});
+    
+}

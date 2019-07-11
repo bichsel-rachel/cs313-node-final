@@ -12,6 +12,7 @@
     <h1>We Got This!</h1>
 </header>
 <body>
+    <div id="loginStatus"></div>
     <div class="col-sm-8">    
         <div class="jumbotron">
             <h1>Log In</h1>
@@ -27,18 +28,19 @@
         </div>
     </div>
 
+     <div id="signUpStatus"></div>
     <div class="col-sm-8">    
         <div class="jumbotron">
             <h1>Sign Up</h1>
             
             <form>
-                <input type="text" name="fName" placeholder="First Name" required>
-                <input type="text" name="lName" placeholder="Last Name" required>
+                <input type="text" name="fname" placeholder="First Name" required>
+                <input type="text" name="lname" placeholder="Last Name" required>
                 <input type="text" name="username" placeholder="Username" required>
                 <input type="email" name="email" placeholder="Email" required>
                 <input type="password" name="password" placeholder="Password" required>
                 <!-- <input type="submit" value="Submit" class="btn btn-primary">  -->
-                <button type="button" onclick="createUser(fName.value, lName.value, username.value, email.value, password.value)">Create User</button>
+                <button type="button" onclick="createUser(fname.value, lname.value, username.value, email.value, password.value)">Create User</button>
             </form>
 
             <div id="result"></div>

@@ -12,12 +12,13 @@
 <header>
     <h1>We Got This!</h1>
 </header>
-<body>
-    
+<body onload="verifyLogin()">
+    <button onclick="logout()">Log out</button>
     <h2>Pick a Category</h2>
     <!-- <form action="/getCategory" method="GET">
         <input name="id" type="integer" value="1" hidden/><br />
     </form> -->
+    <div id="status"></div>
     <button onclick="getCategory(1)">Sleeping</button>
     <button onclick="getCategory(2)">Eating</button>
     <button onclick="getCategory(3)">Napping</button>

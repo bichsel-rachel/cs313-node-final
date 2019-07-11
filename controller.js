@@ -1,15 +1,25 @@
-const port = process.env.PORT || 8888
 const { Pool } = require('pg')
 const connectionString = process.env.DATABASE_URL;
+const path = require('path')
 
 const pool = new Pool({connectionString: connectionString});
 
+const bcrypt = require('bcrypt');
+
+const saltRounds = 10;
+
 function createUser(req, res) {
-  let fname = req.query.fName;
-  let lname = req.query.lName;
-  let username = req.query.username;
-  let email = req.query.email;
-  let password = req.query.password;
+  let fname = req.body.fname;
+  let lname = req.body.lname;
+  let username = req.body.username;
+  let email = req.body.email;
+  let password = req.body.password;
+
+  console.log("First Name: ",fname);
+  console.log("Last Name: ",lname);
+  console.log("Username: ",username);
+  console.log("email: ",email);
+  console.log("Password: ",password);
   
 
  insertInfo(fname, lname, username, email, password, (error, result) => {
@@ -17,49 +27,93 @@ function createUser(req, res) {
     res.status(500).json({success: false, data: error});
   }else{
     res.json(result);
-    res.sendFile(path.join(__dirname+'/public/login.html'));
   }
 });
 }
 
 function insertInfo(fname, lname, username, email, password, callback) {
-  let sql = "INSERT INTO users (username, first_name, last_name, email, password) VALUES ('" + username + "', '" + fname + "', '" + lname + "', '" + email + "', '" + password + "')"; 
-  console.log(sql);
-  pool.query(sql, (err, result) => {
-    if (err) {
-      console.log('an error with db happened');
-      console.log(err);
-      callback(err,null);
-    }
-    console.log("Row inserted");
+
+  bcrypt.genSalt(saltRounds, function(err, salt) {
+      bcrypt.hash(password, salt, function(err, hash) {
+          // Store hash in your password DB.
+          password = hash;
+           console.log("Hashed Pasword:",password);
+
+
+
+           let sql = "INSERT INTO users (username, first_name, last_name, email, password) VALUES ('" + username + "', '" + fname + "', '" + lname + "', '" + email + "', '" + password + "')"; 
+           console.log(sql);
+       
+           pool.query(sql, function(err, result) {
+               if (err) {
+                console.log('an error with db happened');
+                console.log(err);
+                callback(err,null);
+               } else {
+                  // Updated
+                  console.log("Row inserted");
+                  console.log("Password Updated with DB result: " + JSON.stringify(result.rows));
+                  callback(null, result);
+
+       
+               }
+           })
+
+      });
   });
-};
+
+}
+
 
 function login(req, res) {
-  let email = req.query.email;
- //console.log(id);
+  let email = req.body.email;
+  let password = req.body.password;
 
- checkUser(email, (error, result) => {
+  console.log("Email: ",email);
+    console.log("Password: ",password);
+
+ checkUser(email, password, (error, result) => {
   if (error || result == null) {
     res.status(500).json({success: false, data: error});
   }else{
+    req.session.id = result[0].id;
+    console.log('req.session', req.session);
     res.json(result);
-    res.sendFile(path.join(__dirname+'/public/category.html'));
+    // res.sendFile(path.join(__dirname+'/public/category.html'));
   }
 });
 }
 
-function checkUser(email, callback) {
-  let sql = 'SELECT id, username, email, password FROM users WHERE email = $1 AND password = $2';
+function checkUser(email, password, callback) {
+
+  //  const myPlaintextPassword = password;
+  // const someOtherPlaintextPassword = 'not_bacon';
+  console.log("Password CheckUser:",password);
+
+  let sql = 'SELECT id, email, password FROM users WHERE email = $1';
   let params = [email];
+
   pool.query(sql, params, (err, result) => {
     if (err) {
       console.log('an error with db happened');
       console.log(err);
       callback(err,null);
+    } else{
+      bcrypt.compare(password, result.rows[0].password, function(err, res) {
+        // res == true
+            if(res) {
+                // Passwords match
+                console.log("Found DB result: " + JSON.stringify(result.rows));
+                callback(null, result.rows);
+            } else {
+                // Passwords don't match
+                console.log("An error with the DB occurred or host not found: " + err);
+                //console.log(err);
+                callback(err, null);
+            } 
+    });
     }
-    //console.log('found db result: ' + JSON.stringify(result.rows[0]));
-    callback(null, result.rows);
+
   });
 };
 
@@ -150,10 +204,74 @@ pool.query(sql, params, (err, result) => {
 });
 };
 
+
+function logout(req, res){
+ req.session.destroy();
+ res.json({success: "logged out"});
+}
+
+function checkSession(req, res){
+  if(req.session.id){
+    res.json({result: "TRUE"});
+  } else {
+      res.json({result: null});
+  }
+}
+
+function addTipCont(req, res) {
+  let users_id = req.session.id;
+  let category_id = 1;
+  let title = req.body.title;
+  let description = req.body.description;
+  let thumbs_up = 0;
+  let thumbs_down = 0;
+ 
+  console.log("User Id: ", users_id);
+  console.log("Category Id: ", category_id);
+  console.log("Title: ",title);
+  console.log("Description: ",description);
+  
+
+ insertTip(users_id, category_id, title, description, thumbs_up, thumbs_down, (error, result) => {
+  if (error || result == null) {
+    res.status(500).json({success: false, data: error});
+  }else{
+    res.json(result);
+  }
+});
+}
+
+function insertTip(users_id, cat_id, title, description, thumbs_up, thumbs_down, callback) {
+
+
+           let sql = "INSERT INTO tip (users_id, category_id, tip_title, tip_description, thumbs_up, thumbs_down) VALUES ('" + users_id + "', '" + cat_id + "', '" + title + "', '" + description + "', '" + thumbs_up + "', '" + thumbs_down + "')"; 
+           console.log(sql);
+       
+           pool.query(sql, function(err, result) {
+               if (err) {
+                console.log('an error with db happened');
+                console.log(err);
+                callback(err,null);
+               } else {
+                  // Updated
+                  console.log("Row inserted");
+                  console.log("Password Updated with DB result: " + JSON.stringify(result.rows));
+                  callback(null, result);
+
+       
+               }
+           })
+
+      };
+
+
   module.exports = {
      login: login
   ,  createUser: createUser
   ,  getCategoryDisplay: getCategoryDisplay
   ,  getThumbsUp: getThumbsUp
   ,  getThumbsDown: getThumbsDown
+  ,  logout: logout
+  ,  checkSession: checkSession
+  ,  addTipCont: addTipCont
   }
