@@ -79,8 +79,7 @@ function login(req, res) {
     req.session.id = result[0].id;
     console.log('req.session', req.session);
     res.json(result);
-    // res.sendFile(path.join(__dirname+'/public/category.html'));
-  }
+    }
 });
 }
 
@@ -142,7 +141,7 @@ function getCategory(id, callback) {
         console.log(err);
         callback(err,null);
       }
-      //console.log('found db result: ' + JSON.stringify(result.rows[0]));
+      
       callback(null, result.rows);
     });
   };

@@ -13,8 +13,9 @@ function checkLogin(email, password) {
     $.post("/login", params, function(result) {
 		if (result) {
 			console.log("logged in");
-            window.location.href = "http://localhost:8888/category.html";
-		} else {
+            // window.location.href = "http://localhost:8888/category.html";
+             window.location.href = "https://gentle-sierra-19503.herokuapp.com/category.html";
+          	} else {
 			$("#loginStatus").text("Incorrect username or password. Try again.");
 		}
 	});
@@ -179,7 +180,8 @@ function logout() {
 function verifyLogin() {
     $.get("/verifyLogin", function (result){
         if(!result.result){
-             window.location.href = "http://localhost:8888/";
+            // window.location.href = "http://localhost:8888/";
+            window.location.href = "https://gentle-sierra-19503.herokuapp.com/";
         }
     })
 }
