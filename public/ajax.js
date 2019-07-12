@@ -185,22 +185,19 @@ function verifyLogin() {
 }
 
 function addTip(title, description, cid) {
-    console.log("inside addTip function");
-    console.log("Title:",title);
-     console.log("Title:",description);
- console.log("Title:",cid);
-
 
     var params = {
         title: title
     ,   description: description
     ,   cid: cid
     };
-    console.log(params);
+    console.log("Params: ",params);
 
     $.post("/addTip", params, function(result) {
 		if (result) {
-			$("#status").text("Successfully added Tip.");
+             var status = $('#status');
+			// $("#status").text("Successfully added Tip.");
+            status.append('<p class="status">Successfully added tip</p><br />');
             getCategory(cid);
 		} else {
 			$("#status").text("Error adding Tip.");

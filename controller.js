@@ -220,7 +220,7 @@ function checkSession(req, res){
 
 function addTipCont(req, res) {
   let users_id = req.session.id;
-  let category_id = 1;
+  let category_id = req.body.cid;
   let title = req.body.title;
   let description = req.body.description;
   let thumbs_up = 0;
