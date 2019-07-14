@@ -220,18 +220,18 @@ function checkSession(req, res){
 function addTipCont(req, res) {
   let users_id = req.session.id;
   let category_id = req.body.cid;
-  let title = req.body.title;
+  let tip_title = req.body.tipTitle;
   let description = req.body.description;
   let thumbs_up = 0;
   let thumbs_down = 0;
  
+  console.log("Test:", tip_title);
   console.log("User Id: ", users_id);
   console.log("Category Id: ", category_id);
-  console.log("Title: ",title);
   console.log("Description: ",description);
   
 
- insertTip(users_id, category_id, title, description, thumbs_up, thumbs_down, (error, result) => {
+ insertTip(users_id, category_id, tip_title, description, thumbs_up, thumbs_down, (error, result) => {
   if (error || result == null) {
     res.status(500).json({success: false, data: error});
   }else{

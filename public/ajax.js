@@ -91,7 +91,7 @@ function updateResultList(data) {
     resultList.append('<h4>Tip:</h4> ' + title + '<br />' + description + '<br /><b>Tip By: </b>' + username + '<br /><b>Thumbs up:</b>' + thumbs_up + '<br /><b>Thumbs down: </b>' + thumbs_down + '<br /><button type="button" onclick="thumbsUp(' + data[i].tid + ',' + data[i].id + ')">Thumbs Up</button><br /><button type="button" onclick="thumbsDown(' + data[i].tid + ',' + data[i].id + ')">Thumbs Down</button>');
     }
     addTip.append('<h3>Add Tip</h3><br />');
-    addTip.append('<form><input type="text" name="title" placeholder="Title"><br /><input type="text" name="description" placeholder="Description"><br /><button onclick="addTip(title.value, description.value, ' + data[0].id + ')">Add Tip</button></form>');
+    addTip.append('<form><input type="text" name="tipTitle" placeholder="Tip Title"><br /><textarea rows="4" cols="50" name="description" placeholder="Description"></textarea><br /><button onclick="addTip(tipTitle.value, description.value, ' + data[0].id + ')">Add Tip</button></form>');
 }
 else {
     console.log("Error")
@@ -186,14 +186,16 @@ function verifyLogin() {
     })
 }
 
-function addTip(title, description, cid) {
+function addTip(tipTitle, description, cid) {
 
     var params = {
-        title: title
+        tipTitle: tipTitle
     ,   description: description
     ,   cid: cid
     };
     console.log("Params: ",params);
+
+    event.preventDefault();event.preventDefault();
 
     $.post("/addTip", params, function(result) {
 		if (result) {
