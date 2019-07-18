@@ -1,35 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>We Got This! | Home</title>
+    <title>Surviving Parenthood | Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="stylesheets/main.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=DM+Sans|Literata&display=swap" rel="stylesheet">
     <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script type="text/javascript" src="ajax.js"></script>
 </head>
-<header>
-    <h1>We Got This!</h1>
-</header>
 <body onload="verifyLogin()">
-    <button onclick="logout()">Log out</button>
-    <h2>Pick a Category</h2>
-    <!-- <form action="/getCategory" method="GET">
-        <input name="id" type="integer" value="1" hidden/><br />
-    </form> -->
-    <div id="status"></div>
-    <button onclick="getCategory(1)">Sleeping</button>
-    <button onclick="getCategory(2)">Eating</button>
-    <button onclick="getCategory(3)">Napping</button>
-    <button onclick="getCategory(4)">Discipline</button>
-    <button onclick="getCategory(5)">Media</button>
-
-
-
-
-    <div id="categories"></div>
-    <form id="addTip"></form>
-   
+    <header>
+        <h1>Surviving Parenthood</h1>
+        <h4>One Tip at a Time</h4>
+    </header>
+    <main id="category-main">
+        <button onclick="logout()">Log out</button>
+        <h2>Pick a Category</h2>
+        <div id="status"></div>
+        <button class="category-button" onclick="getCategory(1)">Sleeping</button>
+        <button class="category-button" onclick="getCategory(2)">Eating</button>
+        <button class="category-button" onclick="getCategory(3)">Napping</button>
+        <button class="category-button" onclick="getCategory(4)">Discipline</button>
+        <button class="category-button" onclick="getCategory(5)">Media</button>
+        <div id="categories"> 
+            <img src="images/hide-n-seek.jpg" alt="boy playing hide and seek">
+        </div>
+        <form id="addTip"></form>
+       
+    </main>
 </body>
 </html>

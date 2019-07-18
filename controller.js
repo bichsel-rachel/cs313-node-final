@@ -21,14 +21,19 @@ function createUser(req, res) {
   console.log("email: ",email);
   console.log("Password: ",password);
   
-
- insertInfo(fname, lname, username, email, password, (error, result) => {
-  if (error || result == null) {
-    res.status(500).json({success: false, data: error});
-  }else{
-    res.json(result);
+  if (fname == "" || lname == "" || username == "" || email == "" || password == ""){
+    console.log("Empty input fields. New user not created.")
+    res.status(500).json({success: false});
   }
-});
+  else {
+  insertInfo(fname, lname, username, email, password, (error, result) => {
+    if (error || result == null) {
+      res.status(500).json({success: false, data: error});
+    }else{
+      res.json(result);
+    }
+  });
+  }
 }
 
 function insertInfo(fname, lname, username, email, password, callback) {
@@ -74,11 +79,16 @@ function login(req, res) {
 
  checkUser(email, password, (error, result) => {
   if (error || result == null) {
-    res.status(500).json({success: false, data: error});
-  }else{
+    if (error == 1) {
+      res.json({success: false});
+    }else {
+       res.status(500).json({success: false, data: error});
+    }
+  }
+  else{
     req.session.id = result[0].id;
     console.log('req.session', req.session);
-    res.json(result);
+    res.json({success: true, data: result});
     }
 });
 }
@@ -96,7 +106,9 @@ function checkUser(email, password, callback) {
     if (err) {
       console.log('an error with db happened');
       console.log(err);
-      callback(err,null);
+      callback(err,null);}
+    else if ( result.rows.length == 0) {
+      callback(1, "data didn't exist");
     } else{
       bcrypt.compare(password, result.rows[0].password, function(err, res) {
         // res == true

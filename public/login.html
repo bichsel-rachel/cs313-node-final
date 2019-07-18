@@ -1,51 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>We Got This! | Login</title>
+    <title>Surviving Parenthood | Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="stylesheet" type="text/css" href="stylesheets/main.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=DM+Sans|Literata&display=swap" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="ajax.js"></script>
 </head>
-<header>
-    <h1>We Got This!</h1>
-</header>
 <body>
-    <div id="loginStatus"></div>
-    <div class="col-sm-8">    
-        <div class="jumbotron">
-            <h1>Log In</h1>
+    <header>
+        <h1>Surviving Parenthood</h1>
+        <h4>One Tip at a Time</h4>
+    </header>
+    <main>
+        <p>Surviving Parenthood is a place for parents/caregivers to come together and give tips to help one another raise their kids. Login to see and add tips. If you don't have an account, <b>sign up</b> today!</p>
+       
+         <div id="login-container">
+            <div>
+                    <div id="loginStatus"></div>
+                    <h2>Log In</h2>
+                    
+                    <form>
+                        <input type="email" name="email" placeholder="Email" required>
+                        <input type="password" name="password" placeholder="Password" required>
+                        <!-- <input type="submit" value="Submit" class="btn btn-primary">  -->
+                        <button type="button" onclick="checkLogin(email.value, password.value)" class="btn btn-primary">Login</button>
+                    </form>
             
-            <form>
-                <input type="email" name="email" placeholder="Email">
-                <input type="password" name="password" placeholder="Password">
-                <!-- <input type="submit" value="Submit" class="btn btn-primary">  -->
-                <button type="button" onclick="checkLogin(email.value, password.value)">Login</button>
-            </form>
-
-            <div id="result"></div>
-        </div>
-    </div>
-
-     <div id="signUpStatus"></div>
-    <div class="col-sm-8">    
-        <div class="jumbotron">
-            <h1>Sign Up</h1>
-            
-            <form>
-                <input type="text" name="fname" placeholder="First Name" required>
-                <input type="text" name="lname" placeholder="Last Name" required>
-                <input type="text" name="username" placeholder="Username" required>
-                <input type="email" name="email" placeholder="Email" required>
-                <input type="password" name="password" placeholder="Password" required>
-                <!-- <input type="submit" value="Submit" class="btn btn-primary">  -->
-                <button type="button" onclick="createUser(fname.value, lname.value, username.value, email.value, password.value)">Create User</button>
-            </form>
-
-            <div id="result"></div>
-        </div>
-    </div>
-   
+                    <div id="signUpStatus"></div>
+                    <h2>Sign Up</h2>
+                    
+                    <form id="signUp" method="" action="">
+                        <input type="text" name="fname" placeholder="First Name" required />
+                        <input type="text" name="lname" placeholder="Last Name" required />
+                        <input type="text" name="username" placeholder="Username" required />
+                        <input type="email" name="email" placeholder="Email" required />
+                        <input type="password" name="password" placeholder="Password" required />
+                        <button type="" onclick="createUser(fname.value, lname.value, username.value, email.value, password.value)" class="btn btn-primary">Create User</button>
+                    </form>
+            </div>
+            <img src="images/boy-super-hero.jpg" alt="super boy">
+     </div>
+    </main>
+   <footer></footer>
 </body>
 </html>

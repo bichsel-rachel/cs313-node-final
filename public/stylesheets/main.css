@@ -1,3 +1,66 @@
+@import url('https://fonts.googleapis.com/css?family=DM+Sans|Literata&display=swap');
+
 body {
-    padding-left: 50px;
+    font-family: 'DM Sans', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Literata', serif;
+}
+
+main {
+    padding-left: 125px;
+    padding-right: 125px;
+}
+
+header {
+    background-color: orange;
+    padding: 10px;
+    margin: 0px;
+    text-align: center;
+    margin-bottom: 20px;
+
+}
+
+footer {
+     background-color: grey;
+     padding: 30px;
+     margin-top: 30px;
+}
+
+#signUp {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
+#signUp input, #signUp button {
+    margin-bottom: 10px;
+}
+
+#loginStatus, #signUpStatus {
+    color: red;
+    font-weight: bold;
+}
+
+#login-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.category-button {
+    margin-right: 20px;
+    font-size: 16px;
+    padding: 3px 20px 3px 20px;
+}
+
+#categories img {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.category-main {
+    text-align: center;
+    align-content: center;
 }

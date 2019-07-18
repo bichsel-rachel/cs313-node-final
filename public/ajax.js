@@ -11,12 +11,12 @@ function checkLogin(email, password) {
    
     
     $.post("/login", params, function(result) {
-		if (result) {
+		if (result.success) {
 			console.log("logged in");
             // window.location.href = "http://localhost:8888/category.html";
              window.location.href = "https://gentle-sierra-19503.herokuapp.com/category.html";
           	} else {
-			$("#loginStatus").text("Incorrect username or password. Try again.");
+			$("#loginStatus").html("*Incorrect username or password. Try again.");
 		}
 	});
 }
@@ -81,6 +81,7 @@ function updateResultList(data) {
      var resultList = $('#categories');
      var addTip = $('#addTip');
      resultList.empty();
+     resultList.append('<h2>' + data[0].category_name + '</h2>');
      // you could use a forEach here as well...
     for (var i = 0; i < data.length; i++) {
     var title = data[i].tip_title;
