@@ -90,7 +90,7 @@ function updateResultList(data) {
     var username = data[i].username;
     var thumbs_up = data[i].thumbs_up;
     var thumbs_down = data[i].thumbs_down;
-    resultList.append('<h4 class="tip-head"><b>' + title + '</b></h4>' + description + '<br /><b>Tip By: </b>' + username + '<br /><b>Thumbs up:</b>' + thumbs_up + '<br /><b>Thumbs down: </b>' + thumbs_down + '<br /><button class="thumb-button btn" type="button" onclick="thumbsUp(' + data[i].tid + ',' + data[i].id + ')">Thumbs Up</button><br /><button class="btn thumb-button-down" type="button" onclick="thumbsDown(' + data[i].tid + ',' + data[i].id + ')">Thumbs Down</button>');
+    resultList.append('<h4 class="tip-head"><b>' + title + '</b></h4><p>' + description + '</p><br /><p><b>Tip By: </b>' + username + '</p><br /><p><b>Thumbs up:</b>' + thumbs_up + '</p><br /><p><b>Thumbs down: </b>' + thumbs_down + '</p><br /><button class="thumb-button btn" type="button" onclick="thumbsUp(' + data[i].tid + ',' + data[i].id + ')">Thumbs Up</button><br /><button class="btn thumb-button-down" type="button" onclick="thumbsDown(' + data[i].tid + ',' + data[i].id + ')">Thumbs Down</button>');
     }
     addTip.append('<h3>Add Tip</h3><br />');
     addTip.append('<form><input type="text" id="tipTitle" name="tipTitle" placeholder="Tip Title"><br /><textarea rows="4" cols="50" name="description" placeholder="Description"></textarea><br /><button class="btn" onclick="addTip(tipTitle.value, description.value, ' + data[0].id + ')">Add Tip</button></form>');

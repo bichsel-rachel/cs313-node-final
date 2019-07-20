@@ -63,26 +63,26 @@
     }
 
     .btn {
-   background-color: #5d8dc1;
-  border: none;
-  color: white;
-  text-shadow: 2px 2px 5px black;
-  padding: 5px 15px;
-  text-align: center;
-  border-radius: 5px;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 14px;
- 
-}
+    background-color: #5d8dc1;
+    border: none;
+    color: white;
+    text-shadow: 2px 2px 5px black;
+    padding: 5px 15px;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    
+    }
 
  .btn:hover {
-   background-color: #5078a5;
-}
+    background-color: #5078a5;
+    }
 
  .btn:active {
    background-color: #486f99;
-}
+    }
 
     #header-line {
         padding: 3px;
