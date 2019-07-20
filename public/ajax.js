@@ -1,5 +1,5 @@
 function checkLogin(email, password) {
-    console.log(email, password);
+    // console.log(email, password);
     console.log("inside checkLogin function");
 
     /* Get from elements values */
@@ -14,7 +14,7 @@ function checkLogin(email, password) {
 		if (result.success) {
 			console.log("logged in");
             // window.location.href = "http://localhost:8888/category.html";
-             window.location.href = "https://gentle-sierra-19503.herokuapp.com/category.html";
+            window.location.href = "https://gentle-sierra-19503.herokuapp.com/category.html";
           	} else {
 			$("#loginStatus").html("*Incorrect username or password. Try again.");
 		}
@@ -32,7 +32,7 @@ function createUser(fname, lname, username, email, password) {
     ,   email: email
     ,   password: password //Store name fields value
     };
-    console.log(params);
+    // console.log(params);
 
     $.post("/createUser", params, function(result) {
 		if (result) {
@@ -53,6 +53,7 @@ function getCategory(id) {
     /* Clear result div*/
     $('#categories').html('');
     $('#addTip').html('');
+    // $('#status').html('');
 
     /* Get from elements values */
     var postForm = {
@@ -89,10 +90,10 @@ function updateResultList(data) {
     var username = data[i].username;
     var thumbs_up = data[i].thumbs_up;
     var thumbs_down = data[i].thumbs_down;
-    resultList.append('<h4>Tip:</h4> ' + title + '<br />' + description + '<br /><b>Tip By: </b>' + username + '<br /><b>Thumbs up:</b>' + thumbs_up + '<br /><b>Thumbs down: </b>' + thumbs_down + '<br /><button type="button" onclick="thumbsUp(' + data[i].tid + ',' + data[i].id + ')">Thumbs Up</button><br /><button type="button" onclick="thumbsDown(' + data[i].tid + ',' + data[i].id + ')">Thumbs Down</button>');
+    resultList.append('<h4 class="tip-head"><b>' + title + '</b></h4>' + description + '<br /><b>Tip By: </b>' + username + '<br /><b>Thumbs up:</b>' + thumbs_up + '<br /><b>Thumbs down: </b>' + thumbs_down + '<br /><button class="thumb-button btn" type="button" onclick="thumbsUp(' + data[i].tid + ',' + data[i].id + ')">Thumbs Up</button><br /><button class="btn thumb-button-down" type="button" onclick="thumbsDown(' + data[i].tid + ',' + data[i].id + ')">Thumbs Down</button>');
     }
     addTip.append('<h3>Add Tip</h3><br />');
-    addTip.append('<form><input type="text" name="tipTitle" placeholder="Tip Title"><br /><textarea rows="4" cols="50" name="description" placeholder="Description"></textarea><br /><button onclick="addTip(tipTitle.value, description.value, ' + data[0].id + ')">Add Tip</button></form>');
+    addTip.append('<form><input type="text" id="tipTitle" name="tipTitle" placeholder="Tip Title"><br /><textarea rows="4" cols="50" name="description" placeholder="Description"></textarea><br /><button class="btn" onclick="addTip(tipTitle.value, description.value, ' + data[0].id + ')">Add Tip</button></form>');
 }
 else {
     console.log("Error")

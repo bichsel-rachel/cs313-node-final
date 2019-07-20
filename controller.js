@@ -19,7 +19,7 @@ function createUser(req, res) {
   console.log("Last Name: ",lname);
   console.log("Username: ",username);
   console.log("email: ",email);
-  console.log("Password: ",password);
+  // console.log("Password: ",password);
   
   if (fname == "" || lname == "" || username == "" || email == "" || password == ""){
     console.log("Empty input fields. New user not created.")
@@ -42,12 +42,12 @@ function insertInfo(fname, lname, username, email, password, callback) {
       bcrypt.hash(password, salt, function(err, hash) {
           // Store hash in your password DB.
           password = hash;
-           console.log("Hashed Pasword:",password);
+          //  console.log("Hashed Pasword:",password);
 
 
 
            let sql = "INSERT INTO users (username, first_name, last_name, email, password) VALUES ('" + username + "', '" + fname + "', '" + lname + "', '" + email + "', '" + password + "')"; 
-           console.log(sql);
+          //  console.log(sql);
        
            pool.query(sql, function(err, result) {
                if (err) {
@@ -75,7 +75,7 @@ function login(req, res) {
   let password = req.body.password;
 
   console.log("Email: ",email);
-    console.log("Password: ",password);
+    // console.log("Password: ",password);
 
  checkUser(email, password, (error, result) => {
   if (error || result == null) {
@@ -97,7 +97,7 @@ function checkUser(email, password, callback) {
 
   //  const myPlaintextPassword = password;
   // const someOtherPlaintextPassword = 'not_bacon';
-  console.log("Password CheckUser:",password);
+  // console.log("Password CheckUser:",password);
 
   let sql = 'SELECT id, email, password FROM users WHERE email = $1';
   let params = [email];
@@ -255,10 +255,12 @@ function addTipCont(req, res) {
 function insertTip(users_id, cat_id, title, description, thumbs_up, thumbs_down, callback) {
 
 
-           let sql = "INSERT INTO tip (users_id, category_id, tip_title, tip_description, thumbs_up, thumbs_down) VALUES ('" + users_id + "', '" + cat_id + "', '" + title + "', '" + description + "', '" + thumbs_up + "', '" + thumbs_down + "')"; 
+          //  let sql = "INSERT INTO tip (users_id, category_id, tip_title, tip_description, thumbs_up, thumbs_down) VALUES ('" + users_id + "', '" + cat_id + "', '" + title + "', '" + description + "', '" + thumbs_up + "', '" + thumbs_down + "')"; 
+           let sql = "INSERT INTO tip (users_id, category_id, tip_title, tip_description, thumbs_up, thumbs_down) VALUES ($1, $2, $3, $4, $5, $6)"; 
+           let values = [users_id, cat_id, title, description, thumbs_up, thumbs_down];
            console.log(sql);
        
-           pool.query(sql, function(err, result) {
+           pool.query(sql, values, function(err, result) {
                if (err) {
                 console.log('an error with db happened');
                 console.log(err);

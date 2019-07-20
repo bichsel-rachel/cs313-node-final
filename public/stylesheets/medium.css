@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=DM+Sans|Literata&display=swap');
-
-/******MAIN CONTENT********/
- * {
+@media only screen and (min-width: 37.5em) {
+    /******MAIN CONTENT********/
+     * {
     box-sizing: border-box;
     max-width: 100%;
     }
@@ -88,87 +88,93 @@
         padding: 3px;
         background-color: #ffbf0a;
     }
-/******LOGIN PAGE********/
-#signUp, #login {
+
+
+    /******LOGIN PAGE********/
+    #signUp, #login {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    #signUp input, #signUp button, #login input, #login button {
+        margin-bottom: 10px;
+    }
+
+    #login button, #signUp button {
+        width: 150px;
+    }
+
+    #loginStatus, #signUpStatus {
+        color: red;
+        font-weight: bold;
+    }
+
+    #login-container {
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: space-between;
+    }
+
+    /* #login-item {
+        max-width: 70%;
+    } */
+
+    #login-container img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /******CATEGORY PAGE********/
+    #container-buttons {
     display: flex;
-    flex-direction: column;
-    width: 300px;
-}
+    flex-direction: row;
+    }
 
-#signUp input, #signUp button, #login input, #login button {
+    .category-button {
+        margin-right: 20px;
+        font-size: 16px;
+        padding: 3px 15px 3px 15px;
+    }
+    #categories, #addTip {
+        text-align: left;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 650px;
+    }
+
+    #addTip {
+        margin-bottom: 50px;
+    }
+
+    #categories img {
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+
+    #category-main {
+        text-align: center;
+    }
+
+    .thumb-button {
+        margin-bottom: 10px;
+        margin-top: 5px;
+    }
+
+    .thumb-button-down {
+        margin-bottom: 10px;
+    }
+
+    .tip-head {
+        margin-top: 15px;
+    }
+
+    #status {
+        color: red;
+        font-weight: bold;
+    }
+
+    #tipTitle {
     margin-bottom: 10px;
 }
-
-#login button, #signUp button {
-    width: 150px;
-}
-
-#loginStatus, #signUpStatus {
-    color: red;
-    font-weight: bold;
-}
-
-#login-container {
-    display: flex;
-    flex-direction: column-reverse;
-    justify-content: space-between;
-}
-
-#login-container img {
-    max-width: 100%;
-}
-/******CATEGORY PAGE********/
-#container-buttons {
-    display: flex;
-    flex-direction: column;
-}
-
-.category-button {
-    margin-right: auto;
-    margin-left: auto;
-    margin-bottom: 10px;
-    font-size: 16px;
-    padding: 3px 20px 3px 20px;
-    width: 65%;
-}
-#categories, #addTip {
-    text-align: left;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 650px;
-}
-
-#addTip {
-    margin-bottom: 50px;
-}
-
-#categories img {
-    margin-top: 30px;
-    margin-bottom: 30px;
-}
-
-#category-main {
-    text-align: center;
-}
-
-.thumb-button {
-    margin-bottom: 10px;
-    margin-top: 5px;
-}
-
-.thumb-button-down {
-    margin-bottom: 10px;
-}
-
-.tip-head {
-    margin-top: 15px;
-}
-
-#status {
-    color: red;
-    font-weight: bold;
-}
-
-#tipTitle {
-    margin-bottom: 10px;
 }

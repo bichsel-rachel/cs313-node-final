@@ -2,11 +2,13 @@
 <html lang="en">
 <head>
     <title>Surviving Parenthood | Home</title>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="stylesheets/main.css" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/medium.css" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/large.css" />
+
     <link href="https://fonts.googleapis.com/css?family=DM+Sans|Literata&display=swap" rel="stylesheet">
-    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script type="text/javascript" src="ajax.js"></script>
 </head>
@@ -14,16 +16,19 @@
     <header>
         <h1>Surviving Parenthood</h1>
         <h4>One Tip at a Time</h4>
+         <div id="header-line"></div>
     </header>
     <main id="category-main">
-        <button onclick="logout()">Log out</button>
+        <button onclick="logout()" class="btn">Log out</button>
         <h2>Pick a Category</h2>
         <div id="status"></div>
-        <button class="category-button" onclick="getCategory(1)">Sleeping</button>
-        <button class="category-button" onclick="getCategory(2)">Eating</button>
-        <button class="category-button" onclick="getCategory(3)">Napping</button>
-        <button class="category-button" onclick="getCategory(4)">Discipline</button>
-        <button class="category-button" onclick="getCategory(5)">Media</button>
+        <div id ="container-buttons">
+            <button class="category-button btn" onclick="getCategory(1)">Sleeping</button>
+            <button class="category-button btn" onclick="getCategory(2)">Eating</button>
+            <button class="category-button btn" onclick="getCategory(3)">Napping</button>
+            <button class="category-button btn" onclick="getCategory(4)">Discipline</button>
+            <button class="category-button btn" onclick="getCategory(5)">Media</button>
+        </div>
         <div id="categories"> 
             <img src="images/hide-n-seek.jpg" alt="boy playing hide and seek">
         </div>
