@@ -33,6 +33,7 @@ function createUser(fname, lname, username, email, password) {
     ,   password: password //Store name fields value
     };
     // console.log(params);
+     event.preventDefault();
 
     $.post("/createUser", params, function(result) {
 		if (result) {
@@ -197,7 +198,7 @@ function addTip(tipTitle, description, cid) {
     };
     console.log("Params: ",params);
 
-    event.preventDefault();event.preventDefault();
+    event.preventDefault();
 
     $.post("/addTip", params, function(result) {
 		if (result) {
