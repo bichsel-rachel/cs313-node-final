@@ -48,7 +48,7 @@
         font-family: 'Literata', Garamond, serif; 
     }
 
-     #header-line {
+     .header-line {
         padding: 3px;
         background-color: #ffbf0a;
     }
