@@ -30,7 +30,8 @@ function createUser(req, res) {
     if (error || result == null) {
       res.status(500).json({success: false, data: error});
     }else{
-      res.json(result);
+      // res.json(result);
+      res.json({success: true, data: result});
       }
     });
   }
