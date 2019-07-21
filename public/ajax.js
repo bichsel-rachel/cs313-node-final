@@ -36,7 +36,7 @@ function createUser(fname, lname, username, email, password) {
 
     $.post("/createUser", params, function(result) {
 		if (result) {
-			$("#signUpStatus").text("Successfully created User.");
+			$("#signUpStatus").text("Successfully created account. Please Login above.");
 		} else {
 			$("#signUpStatus").text("Error creating user.");
 		}
