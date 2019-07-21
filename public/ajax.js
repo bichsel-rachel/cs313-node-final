@@ -39,7 +39,7 @@ function createUser(fname, lname, username, email, password) {
 		if (result.success) {
 			$("#signUpStatus").text("Successfully created account. Please Login above.");
 		} else {
-			$("#signUpStatus").text("Error creating user.");
+			$("#signUpStatus").text("Error creating user. Please ensure there are no empty fields.");
 		}
 	});
     
