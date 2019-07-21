@@ -31,8 +31,8 @@ function createUser(req, res) {
       res.status(500).json({success: false, data: error});
     }else{
       res.json(result);
-    }
-  });
+      }
+    });
   }
 }
 

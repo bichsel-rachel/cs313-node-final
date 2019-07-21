@@ -93,6 +93,15 @@
 
    
     /******LOGIN PAGE********/
+    #login-container p {
+        margin-top: 0px;
+        margin-bottom: 10px;
+    }
+
+    #signup-header {
+        margin-bottom: 10px;    
+    }
+    
     #signUp, #login {
         display: flex;
         flex-direction: column;
