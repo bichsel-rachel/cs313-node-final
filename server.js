@@ -1,4 +1,4 @@
-//index.js
+//server.js
 
 require('dotenv').config();
 const control = require('./controller.js');

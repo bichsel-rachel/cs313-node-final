@@ -1,3 +1,5 @@
+//ajax functions
+
 function checkLogin(email, password) {
     // console.log(email, password);
     console.log("inside checkLogin function");
@@ -172,7 +174,7 @@ function logout() {
             console.log("Inside AJAX");
             console.log(data);
            
-             window.location.href = "http://localhost:8888/";
+             window.location.href = "https://gentle-sierra-19503.herokuapp.com/";
         },
         error: function(xhr, status, error) {
             console.log(error);
