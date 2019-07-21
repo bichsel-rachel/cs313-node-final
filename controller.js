@@ -23,7 +23,7 @@ function createUser(req, res) {
   
   if (fname == "" || lname == "" || username == "" || email == "" || password == ""){
     console.log("Empty input fields. New user not created.")
-    res.json({success: false});
+    res.json({result: NULL});
   }
   else {
   insertInfo(fname, lname, username, email, password, (error, result) => {
