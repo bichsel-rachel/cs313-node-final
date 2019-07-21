@@ -11,8 +11,16 @@
     }
 
     main {
-        padding-left: 125px;
-        padding-right: 125px;
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+
+    main p, main input, main button, #loginStatus, #signUpStatus, main textarea, main h4 {
+        font-family: 'DM Sans', sans-serif;
+    }
+
+    main h2, footer p {
+        font-family: 'Literata', Garamond, serif; 
     }
 
     header {
@@ -40,9 +48,11 @@
         font-family: 'Literata', Garamond, serif; 
     }
 
-    main h2, footer p {
-        font-family: 'Literata', Garamond, serif; 
+     #header-line {
+        padding: 3px;
+        background-color: #ffbf0a;
     }
+
 
     header h1, header h4 {
         background-color: #fffbab;
@@ -50,44 +60,39 @@
         margin-right: 0px;
     }
 
-    main p, main input, main button, #loginStatus, #signUpStatus, main textarea {
-        font-family: 'DM Sans', sans-serif;
-    }
 
     footer {
         background-color: #fffbab;
-        padding: 15px;
+        padding: 10px 0px 10px 0px;
         margin-top: 30px;
         text-align: center;
         font-weight: bold;
     }
 
     .btn {
-    background-color: #5d8dc1;
-    border: none;
-    color: white;
-    text-shadow: 2px 2px 5px black;
-    padding: 5px 15px;
-    text-align: center;
-    border-radius: 5px;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 14px;
-    
+        background-color: #5d8dc1;
+        border: none;
+        color: white;
+        text-shadow: 2px 2px 5px black;
+        padding: 5px 15px;
+        text-align: center;
+        border-radius: 5px;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+ 
     }
 
- .btn:hover {
-    background-color: #5078a5;
+     .btn:hover {
+        background-color: #5078a5;
     }
 
- .btn:active {
-   background-color: #486f99;
+    .btn:active {
+        background-color: #486f99;
     }
 
-    #header-line {
-        padding: 3px;
-        background-color: #ffbf0a;
-    }
+   
+
 /******LOGIN PAGE********/
 #signUp, #login {
     display: flex;
@@ -161,7 +166,13 @@
 }
 
 .tip-head {
-    margin-top: 15px;
+     margin-top: 15px;
+     margin-bottom: 0px;
+}
+
+#categories p {
+    margin-top: 3px;
+    margin-bottom: 3px;
 }
 
 #status {
@@ -171,4 +182,8 @@
 
 #tipTitle {
     margin-bottom: 10px;
+}
+
+textarea {
+     margin-bottom: 10px;
 }
