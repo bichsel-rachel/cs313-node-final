@@ -94,6 +94,9 @@
    
 
     /******LOGIN PAGE********/
+    #login-container p {
+        margin-top: 0px;
+    }
     #signUp, #login {
         display: flex;
         flex-direction: column;
